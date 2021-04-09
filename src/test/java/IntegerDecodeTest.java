@@ -1,4 +1,5 @@
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.*;
 
@@ -11,9 +12,14 @@ public class IntegerDecodeTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"1-2", "1234q", "letters", "0xABCDEFG", "08"})
+    @ValueSource(strings = {"1234q", "letters", "0xABCDEFG", "08"})
     void wrongValueThrowsNumberFormatException(String input) {
         Assertions.assertThrows(NumberFormatException.class, () -> Integer.decode(input));
+    }
+
+    @Test
+    void signAtWrongPositionThrowsNumberFormatException(){
+        Assertions.assertThrows(NumberFormatException.class, () -> Integer.decode("1-332"));
     }
 
     @ParameterizedTest
