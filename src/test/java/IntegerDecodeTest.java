@@ -1,5 +1,4 @@
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.*;
 
@@ -36,7 +35,7 @@ public class IntegerDecodeTest {
     }
 
     @ParameterizedTest
-    @CsvSource({"0xFF, 255", "0XFF, 255","-0xFF, -255", "-0XFF, -255"})
+    @CsvSource({"0xFF, 255", "0XFF, 255","-0xFF, -255", "-0XFF, -255","#FF, 255", "-#FF, -255"})
     void decodeShouldCorrectlyDecodingHexNumbers(String input, int expected) {
         Assertions.assertEquals(expected, Integer.decode(input));
     }
